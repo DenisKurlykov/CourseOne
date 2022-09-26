@@ -10,7 +10,7 @@ import Foundation
 // 3 - Создать массив из чисел, числа это купюры в долларах посчитать количество денег и вывести в консоль.
 let banknotes = [10, 25, 100, 5, 1]
 var amountOfMoney = 0
-banknotes.forEach {banknote in
+banknotes.forEach { banknote in
     amountOfMoney += banknote
 }
 print("Сумма в $ составила \(amountOfMoney)")
@@ -19,13 +19,13 @@ print("")
 //4.1 - Создать массив "дни в месяцах" используя цикл for вывести колличество дней в каждом мес.
 let daysInMonths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-for days in daysInMonths {
-    print(days)
+for day in daysInMonths {
+    print(day)
 }
 print("")
 
 // 4.2 - используйте еще один массив с именами месяцев чтобы вывести название месяца + количество дней.
-let namesOfMonths = [
+let  months = [
     "Январь",
     "Февраль",
     "Март",
@@ -42,8 +42,8 @@ let namesOfMonths = [
 print("")
 
 var enumiration = 0
-for days in daysInMonths {
-    print("\(namesOfMonths[enumiration]) - \(days)")
+for day in months {
+    print("\(months[enumiration]) - \(day)")
     enumiration += 1
 }
 print("")
@@ -103,12 +103,10 @@ print(newArray)
 if newArray.isEmpty {
     print("Массив пустой")
 } else {
-    for value in newArray {
-        if value == "Привет" {
+    for value in newArray where value == "Привет" {
             print(value)
         }
     }
-}
 
 // 10 - Создайте массив типа Int из 10 элементов используя Range новый массив с элементами под индексами от 3 до 8.
 var array = Array(1...10)
