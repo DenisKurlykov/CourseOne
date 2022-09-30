@@ -11,7 +11,7 @@ import Foundation
 var responseMessages: [Int: String] = [:]
 
 // 4 - Добавьте в пустой cловарь ключи 500, 404, 403, 200, а значения "OK", "Accsess forbiden", "File not found", "Internal server error"
-responseMessages = [500 : "OK"]
+responseMessages = [500: "OK"]
 responseMessages.updateValue("Accsess forbiden", forKey: 404)
 responseMessages[403] = "File not found"
 responseMessages[200] = "Internal server error"
@@ -22,12 +22,11 @@ let httpResponseCodes = [200, 403, 301]
 // 6 - Переберите массив httpResponseCode в цикле чтоб при каждой итерации вы проверяли код массива в словаре responseMessage и если код такой есть то выводить в консоль ключ и значение, если нет писать неизвестный код и выводить код.
 // Вариант 1
 for code in httpResponseCodes {
-    if (responseMessages[code] != nil) {
-        print("Код \(code):  \(responseMessages[code] ?? "")")
-    } else {
-       print("Неизвестный код: \(code)")
-    }
+    responseMessages[code] != nil ?
+    print("Код \(code): \(responseMessages[code] ?? "")") :
+    print("Неизвестный код: \(code)")
 }
+
 
 // Вариант 2
 for code in httpResponseCodes {
