@@ -1,4 +1,4 @@
-// 
+//
 //  main.swift
 //  CourseOne
 //
@@ -22,9 +22,7 @@ let httpResponseCodes = [200, 403, 301]
 // 6 - Переберите массив httpResponseCode в цикле чтоб при каждой итерации вы проверяли код массива в словаре responseMessage и если код такой есть то выводить в консоль ключ и значение, если нет писать неизвестный код и выводить код.
 // Вариант 1
 for code in httpResponseCodes {
-    responseMessages[code] != nil ?
-    print("Код \(code): \(responseMessages[code] ?? "")") :
-    print("Неизвестный код: \(code)")
+    responseMessages[code] != nil ? print("Код \(code): \(responseMessages[code] ?? "")") : print("Неизвестный код: \(code)")
 }
 
 
