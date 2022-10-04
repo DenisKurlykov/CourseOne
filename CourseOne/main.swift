@@ -123,11 +123,9 @@ print(namePhone ?? "Значение не получено")
 let numbers: [String]? = ["5", "3", "шесть"]
 var numbersInt: [Int] = []
 
-if let numbersNonOpt = numbers {
-    if numbersNonOpt.count > 2 {
+if let numbersNonOpt = numbers, numbersNonOpt.count > 2 {
         numbersInt = numbersNonOpt.compactMap { Int($0) }
     }
-}
 print(numbersInt)
 
 
