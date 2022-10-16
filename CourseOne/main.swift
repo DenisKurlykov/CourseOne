@@ -56,13 +56,12 @@ var wallet = [10, 50, 100, 100, 5000, 100, 50, 50, 500, 100]
 // проверка массива на содержание купюры номинали 100 и вывести в отделный массив
 func handle100(_ wallet: [Int]) -> [Int] {
     var returnWallet: [Int] = []
-    for banknote in wallet {
-        if banknote == 100 {
-            returnWallet.append(banknote)
-        }
+    for banknote in wallet where banknote == 100 {
+        returnWallet.append(banknote)
     }
     return returnWallet
 }
+
 
 // проверка массива на купюры равные или больше 1000
 func handleMore1000(_ wallet: [Int]) -> [Int] {
