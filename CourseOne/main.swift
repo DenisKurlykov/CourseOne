@@ -84,11 +84,21 @@ func handleWallet(wallet: [Int], closure: (Int) -> Bool) -> [Int] {
     }
     return returnWallet
 }
-let result = handleWallet(wallet: wallet) { $0 == 100 }
-print(result)
+
+// Полная запись
+let result1 = handleWallet(wallet: wallet, closure: { (result) -> Bool in  result == 100 })
+
+// Вынос замыкания за скоби и соращение типа возвращаемого значения
+let result2 = handleWallet(wallet: wallet) { result in
+    result == 100
+}
+
+// С использованием индекса значения замыкания
+let result3 = handleWallet(wallet: wallet) { $0 == 100 }
+print(result3)
 
 // Сравнение массива с разрешенными купюрами (100 и 500) и вынос их в отдельный массив
-let result2 = handleWallet(wallet: wallet) { banknote in // берем элемент из массива wallet и помещаем в замыкание
+let result4 = handleWallet(wallet: wallet) { banknote in // берем элемент из массива wallet и помещаем в замыкание
     for number in Array(arrayLiteral: 100, 500) { // создаем массив с проверяемыми числами и извлекаем число из этого массивва
         if number == banknote { // если извлеченное число равно элементу массива wallet то это true
             return true // по условию замыкания, если выражение true, то элемент массива wallet добавдяем в массив и вовращаем массив
@@ -98,8 +108,23 @@ let result2 = handleWallet(wallet: wallet) { banknote in // берем элем�
 }
 
 // сокращенная запись
-let result3 = handleWallet(wallet: wallet) { [100, 500].contains($0) }
-print(result3)
+let result5 = handleWallet(wallet: wallet) { [100, 500].contains($0) }
+print(result5)
+
+//Свойства с типом замыкающих выражений
+let completion: (_ numberOne: Int, _ numberTwo: Int) -> Int = {
+    $0 + $1
+}
+print(completion(5, 5))
+
+// В дальнейшем примере свойство closure захватывает значения number1 и number2 и производит вычисление. И какие бы значения мы не присваивали number1 и number2 в свойстве closure они по прежнему останутся 6, 6
+var number1 = 6
+var number2 = 6
+
+let closure: () -> Int = {[number1, number2] in
+    number1 + number2
+}
+
 //____________________________________________________________________________________________________
 
 
@@ -132,7 +157,7 @@ print("")
 /*
  Это замыкание которое выносится за скобки функции и располагается в конце функции
  */
-let result4 = handleWallet(wallet: wallet) { banknote in
+let result6 = handleWallet(wallet: wallet) { banknote in
     for number in Array(arrayLiteral: 100, 500) {
         if number == banknote {
             return true
