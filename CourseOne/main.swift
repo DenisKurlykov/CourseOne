@@ -13,10 +13,10 @@ import Foundation
  // список через case
  }
  */
-enum TravelClass {
-    case First, Buseness, Economy
+enum TravelClas {
+    case first, buseness, economy
 }
-let travel = TravelClass.First
+let travel = TravelClas.first
 
 enum Medal {
     case gold
@@ -157,28 +157,52 @@ enum Vehicles {
     Пчать из secondClosure, closure
 */
 //если передаете элемент, который в свиче последний. Третьей строчки быть не должно.
-func a(for car: Vehicles.Cars, closure:(String, Int) -> ()) {
+func vihical(for car: Vehicles.Cars, closure:(String, Int) -> (), secondClosure:() -> ()) {
+    var lastCase = false
     switch car {
     case let .bmw(string, int):
+        lastCase = true
         print("Печать из switch \(string) \(int)")
         closure(string, int)
+        fallthrough
     case let .mercedes(string, int):
-        print("\(string) \(int)")
-        closure(string, int)
+        if lastCase {
+            fallthrough
+        } else {
+            lastCase = true
+            print("Печать из switch \(string) \(int)")
+            closure(string, int)
+            fallthrough
+        }
     case let .volvo(string, int):
-        print("\(string) \(int)")
-        closure(string, int)
+        if lastCase {
+            secondClosure()
+        } else {
+            print("Печать из switch \(string) \(int)")
+            closure(string, int)
+        }
     }
 }
-a(for: Vehicles.Cars.bmw("Black", 340)) { color, speed in
+
+vihical(for: .bmw("Black", 340)) { color, speed in
     print("Печать из closure color \(color), speed \(speed)")
+} secondClosure: {
+    print("Печать из secondClosure")
 }
 
 // 9) Создать enum House: Int c 5-ю case –ми и задайте им исходные значения.
-    
-    
     //Создать в House вычисляемое свойство houseHeight, в котором выводить текущее значение * 100
-
-
-
     // Создать в House функцию в которой выводить на печать значение из вычисляемого свойства.
+enum House: Int {
+    case parquet = 100
+    case door = 50
+    case window = 150
+    case wallpaper = 20
+    case chandelier = 200
+    var houseHeight: Int { return self.rawValue * 100 }
+    func getValue() {
+        print(houseHeight)
+    }
+}
+let value = House.parquet
+print(value.getValue())
