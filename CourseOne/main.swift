@@ -16,7 +16,7 @@ struct Observer {
         
         didSet { // значение было получено
             print("didset = \(oldValue)")
-            if name != "" {
+            if !name.isEmpty {
                 name = name.capitalized
             }
         }
@@ -31,7 +31,7 @@ print(observer.name)
 struct ComputerProperty {
     var firstName: String {
         didSet {
-            if firstName != "" {
+            if !firstName.isEmpty {
                 firstName = firstName.capitalized
             }
         }
@@ -47,7 +47,7 @@ print(compProp.fullName)
 compProp.firstName = "Piter"
 
 // 2) Создать класс "Students", добавить ему property: dateOfBirth, skills. Для тренировки. Создавайте свои структуры с разными видами свойств: сохраняемые/не сохраняемые, вычисляемые, свойства типа и т.д.
-class Student {
+final class Student {
     let firstName: String
     let lastName: String
     let dateOfBirth: Int
@@ -148,7 +148,7 @@ struct Journal {
                                                  //-которая принимает и возвращает параметры.
                                                  //-которая принимает замыкание и распечатывает результаты в консоль
 
-class FourMethods {
+final class FourMethods {
     func empty() {
         print(" Пустая функция")
     }
