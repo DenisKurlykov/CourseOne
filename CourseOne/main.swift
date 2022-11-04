@@ -53,6 +53,7 @@ final class Journal {
     func addEstimate(name: String, estimate: Int) {
         Journal.estimation[name] = estimate
     }
+    
     func deleteEstimate(name: String) {
         Journal.estimation[name] = nil
     }
@@ -73,6 +74,7 @@ final class Journal1 {
         case midday
         case evening
     }
+    
     func goToSchool(to schedule: Schedule) {
         switch schedule {
         case .morning:
