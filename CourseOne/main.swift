@@ -54,30 +54,42 @@ print(secondVova.allSelf())
 
 // 3) Расширить String, чтобы принимал сабскрипт вида s[0..<3] и мог также устанавливать значения используя его
 extension String {
-    subscript(indexes: ClosedRange<Int>) -> String {
-        get {
-            var result = String()
-            var string = self
-            indexes.forEach { _ in
-                result += String(string.removeFirst())
-            }
-            return result
-        }
-        set {
-            var result = self
-            indexes.forEach { index in
-                result.removeFirst()
-                result.insert(contentsOf: newValue, at: String.Index(encodedOffset: index))
-            }
-            self = result
-        }
+//    subscript(indexes: ClosedRange<Int>) -> String {
+//        get {
+//            var result = String()
+//            var string = self
+//            indexes.forEach { _ in
+//                result += String(string.removeFirst())
+//            }
+//            return result
+//        }
+//        set {
+//            var result = self
+//            indexes.forEach { index in
+//                result.removeFirst()
+//                result.insert(contentsOf: newValue, at: String.Index(encodedOffset: index))
+//            }
+//            self = result
+//        }
+//    }
+//}
+//
+//var subscriptString = "123123123"
+//print(subscriptString[0...4])
+//subscriptString[1...3] = "1"
+//print(subscriptString)
+
+    subscript(_ range: CountableRange<Int>) -> String {
+        let start = index(startIndex, offsetBy: max(0, range.lowerBound))
+        let end = index(start, offsetBy: min(
+            self.count - range.lowerBound,
+            range.upperBound - range.lowerBound)
+        )
+        return String(self[start..<end])
     }
 }
-
-var subscriptString = "123123123"
-print(subscriptString[0...4])
-subscriptString[1...3] = "1"
-print(subscriptString)
+var a = "123456789"
+print(a[1..<5])
 
 // 4) Расширить Int и добавить 3 метода: возведение в квадрат, в куб, в степень
 extension Int {
